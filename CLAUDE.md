@@ -35,7 +35,7 @@ Browser (Next.js) → HTTP → FastAPI (Python) → SQLAlchemy → PostgreSQL (N
 ## Project Structure
 
 ```
-user-registration-app/
+AuthBridge/
 ├── frontend/
 │   ├── app/
 │   │   ├── layout.tsx              Root layout, Inter font
