@@ -1,6 +1,7 @@
 import bcrypt
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 import models
@@ -20,6 +21,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "An unexpected error occurred. Please try again later."},
+    )
 
 
 def hash_password(password: str) -> str:
@@ -118,3 +127,10 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
     user = get_user_or_404(user_id, db)
     db.delete(user)
     db.commit()
+
+
+# ── TEST ENDPOINTS (learning / dev only) ─────────────────────────────────────
+
+@app.get("/api/test-error")
+def test_500():
+    raise Exception("Deliberate test error — used to verify 500 handling.")

@@ -4,20 +4,20 @@ from pydantic import BaseModel, EmailStr, Field
 
 
 class UserRegister(BaseModel):
-    full_name: str
+    full_name: str = Field(min_length=1)
     email: EmailStr
     password: str = Field(min_length=8)
 
 
 class UserUpdate(BaseModel):
     """PUT — all fields required"""
-    full_name: str
+    full_name: str = Field(min_length=1)
     email: EmailStr
 
 
 class UserPartialUpdate(BaseModel):
     """PATCH — all fields optional"""
-    full_name: Optional[str] = None
+    full_name: Optional[str] = Field(default=None, min_length=1)
     email: Optional[EmailStr] = None
 
 
