@@ -11,7 +11,7 @@ type User = {
 type LoadStatus = "idle" | "loading" | "error";
 
 const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD ?? "";
 
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
