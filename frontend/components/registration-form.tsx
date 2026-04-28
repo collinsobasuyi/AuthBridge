@@ -252,7 +252,7 @@ export default function RegistrationForm() {
       </div>
 
       {/* Error message */}
-      <div aria-live="polite">
+      <div aria-live="polite" className="transition-all duration-200">
         {errorMessage && (
           <p
             id="form-error"
