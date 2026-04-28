@@ -1,12 +1,11 @@
 import Link from "next/link";
-import RegistrationForm from "@/components/registration-form";
+import LoginForm from "@/components/login-form";
 
-export default function Home() {
+export default function LoginPage() {
   return (
     <div className="flex min-h-screen">
       {/* Left branding panel */}
       <div className="relative hidden overflow-hidden lg:flex lg:w-[45%] flex-col justify-between bg-gradient-to-br from-violet-950 via-violet-900 to-violet-800 px-12 py-14">
-        {/* Decorative blur */}
         <div className="pointer-events-none absolute -right-20 top-1/3 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
         <div className="pointer-events-none absolute -left-10 bottom-1/4 h-48 w-48 rounded-full bg-violet-400/10 blur-2xl" />
 
@@ -21,20 +20,20 @@ export default function Home() {
         {/* Middle: hero */}
         <div className="relative">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-violet-300">
-            Full-stack auth project
+            Welcome back
           </p>
           <h2 className="text-5xl font-bold leading-tight text-white">
-            Build secure.<br />Ship faster.
+            Good to see<br />you again.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-violet-200">
-            A complete user authentication flow built with modern tools — register, log in, and manage your account.
+            Sign in to manage your account, update your profile, or change your password.
           </p>
 
           <div className="mt-10 space-y-3">
             {[
-              { icon: "⚡", text: "FastAPI backend with Pydantic validation" },
-              { icon: "🔒", text: "bcrypt password hashing — never stored plain" },
-              { icon: "🐘", text: "PostgreSQL on Neon — serverless and fast" },
+              { icon: "✏️", text: "Edit your name from your account page" },
+              { icon: "🔑", text: "Change your password at any time" },
+              { icon: "🗑️", text: "Delete your account permanently" },
             ].map(({ icon, text }) => (
               <div key={text} className="flex items-center gap-3 text-sm text-violet-100">
                 <span>{icon}</span>
@@ -44,7 +43,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom: attribution */}
+        {/* Bottom */}
         <p className="relative text-sm text-violet-400">
           Built by{" "}
           <a
@@ -68,20 +67,20 @@ export default function Home() {
 
         <div className="mx-auto w-full max-w-md">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-            Create account
+            Sign in
           </h1>
           <p className="mt-3 text-base text-gray-500">
-            Already have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
-              href="/login"
+              href="/"
               className="font-semibold text-violet-600 hover:text-violet-700 transition"
             >
-              Sign in
+              Create one
             </Link>
           </p>
 
           <div className="mt-10">
-            <RegistrationForm />
+            <LoginForm />
           </div>
         </div>
       </div>

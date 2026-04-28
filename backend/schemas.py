@@ -15,10 +15,16 @@ class UserUpdate(BaseModel):
     email: EmailStr
 
 
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+
 class UserPartialUpdate(BaseModel):
     """PATCH — all fields optional"""
     full_name: Optional[str] = Field(default=None, min_length=1)
     email: Optional[EmailStr] = None
+    password: Optional[str] = Field(default=None, min_length=8)
 
 
 class UserResponse(BaseModel):

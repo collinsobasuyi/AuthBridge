@@ -103,13 +103,20 @@ export default function RegistrationForm() {
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
-        <p className="text-xl font-bold text-green-800">You&apos;re registered!</p>
+        <div className="mb-3 text-3xl">✓</div>
+        <p className="text-xl font-bold text-green-800">Account created!</p>
         <p className="mt-2 text-sm text-green-700">
           Your account has been created successfully.
         </p>
+        <a
+          href="/login"
+          className="mt-6 flex w-full items-center justify-center rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-700"
+        >
+          Sign in to your account
+        </a>
         <button
           onClick={handleReset}
-          className="mt-6 rounded-xl border border-green-300 px-5 py-2.5 text-sm font-medium text-green-700 transition hover:bg-green-100"
+          className="mt-3 text-sm text-gray-400 hover:text-gray-600 transition"
         >
           Register another account
         </button>

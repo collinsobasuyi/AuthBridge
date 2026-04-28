@@ -47,6 +47,16 @@ def root():
     return {"message": "Registration API is running"}
 
 
+# ── AUTH ─────────────────────────────────────────────────────────────────────
+
+@app.post("/api/login", response_model=schemas.UserResponse)
+def login_user(credentials: schemas.UserLogin, db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.email == credentials.email).first()
+    if not user or not bcrypt.checkpw(credentials.password.encode(), user.hashed_password.encode()):
+        raise HTTPException(status_code=401, detail="Invalid email or password.")
+    return user
+
+
 # ── CREATE ──────────────────────────────────────────────────────────────────
 
 @app.post("/api/register", response_model=schemas.UserResponse, status_code=201)
@@ -114,6 +124,8 @@ def partial_update_user(user_id: int, data: schemas.UserPartialUpdate, db: Sessi
         user.full_name = data.full_name
     if data.email is not None:
         user.email = data.email
+    if data.password is not None:
+        user.hashed_password = hash_password(data.password)
 
     db.commit()
     db.refresh(user)
